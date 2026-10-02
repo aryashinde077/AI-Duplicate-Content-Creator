@@ -4707,3 +4707,37 @@ body {
 .saved-item small {
     color: #9e98ad !important;
 }
+/* FINAL SAVED PAGE FIX */
+
+#savedPage .creator-card {
+    background: #111118 !important;
+    color: #ffffff !important;
+    border: 1px solid #292633 !important;
+}
+
+#savedPage .creator-card h2 {
+    color: #ffffff !important;
+}
+
+#savedPage .creator-card > p {
+    color: #aaa5b8 !important;
+}
+
+#savedPage .saved-item {
+    background: #15141d !important;
+    color: #eeeaff !important;
+    border: 1px solid #292633 !important;
+}
+
+#savedPage .saved-item strong,
+#savedPage .saved-item b {
+    color: #ffffff !important;
+}
+
+#savedPage .saved-item p {
+    color: #ddd8eb !important;
+}
+
+#savedPage .saved-item small {
+    color: #9e98ad !important;
+}
