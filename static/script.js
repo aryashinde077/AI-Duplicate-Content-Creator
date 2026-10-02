@@ -317,7 +317,7 @@ async function loadRecentGenerations() {
 
     try {
 
-        const response = await fetch("http://127.0.0.1:5000/history");
+        const response = await fetch("/history");
 
         const data = await response.json();
 
@@ -373,7 +373,7 @@ async function loadTotalGenerations() {
 
     try {
 
-        const response = await fetch("http://127.0.0.1:5000/history");
+        const response = await fetch("/history");
 
         const data = await response.json();
 
@@ -401,7 +401,7 @@ async function loadContentCreated() {
 
     try {
 
-        const response = await fetch("http://127.0.0.1:5000/history");
+        const response = await fetch("/history");
 
         const data = await response.json();
 
@@ -428,7 +428,7 @@ async function loadSavedContentCount() {
 
     try {
 
-        const response = await fetch("http://127.0.0.1:5000/saved");
+        const response = await fetch("/saved");
 
         const data = await response.json();
 
