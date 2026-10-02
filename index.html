@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Duplicate Content Creator</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">AI</div>
+                <div>
+                    <h2>ContentAI</h2>
+                    <span>Duplicate Creator</span>
+                </div>
+            </div>
+
+            <nav>
+    <a class="active" data-page="dashboard">🏠 Dashboard</a>
+    <a data-page="create">✍️ Create Content</a>
+    <a data-page="history">📜 History</a>
+    <a data-page="saved">💾 Saved Content</a>
+    <a data-page="settings">⚙️ Settings</a>
+</nav>
+            <div class="sidebar-bottom">
+                <p>AI Content Creator</p>
+                <small>Version 1.0</small>
+            </div>
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main">
+
+            <header class="topbar">
+                <div>
+                    <p class="small-title">AI DUPLICATE CONTENT CREATOR</p>
+                    <h1>Welcome back 👋</h1>
+                    <p class="subtitle">
+                        Create unique content from your existing content using AI.
+                    </p>
+                </div>
+
+                <div class="profile">
+                    <div class="avatar">A</div>
+                    <div>
+                        <strong>Student User</strong>
+                        <span>AI Project</span>
+                    </div>
+                </div>
+            </header>
+
+
+            <!-- Stats -->
+            <section class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon">✨</div>
+                    <div>
+                        <span>Total Generations</span>
+                        <h2 id="totalGenerations">24</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📄</div>
+                    <div>
+                        <span>Content Created</span>
+                        <h2 id="contentCreated">18</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">💾</div>
+                    <div>
+                        <span>Saved Content</span>
+                        <h2 id="savedContent">0</h2>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- Creator -->
+            <section class="creator-card">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Create New Content</h2>
+                        <p>Enter your original content and customize the output.</p>
+                    </div>
+                </div>
+
+
+                <div class="creator-grid">
+
+                    <!-- Input -->
+                    <div class="input-section">
+
+                        <label>Original Content</label>
+
+                        <textarea
+                            id="originalContent"
+                            placeholder="Paste or type your original content here..."
+                        ></textarea>
+
+                        <div class="options">
+
+                            <div>
+                                <label>Content Type</label>
+                                <select id="contentType">
+                                    <option>Blog Post</option>
+                                    <option>Social Media Post</option>
+                                    <option>Article</option>
+                                    <option>Product Description</option>
+                                    <option>Email</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label>Tone</label>
+                                <select id="tone">
+                                    <option>Professional</option>
+                                    <option>Friendly</option>
+                                    <option>Creative</option>
+                                    <option>Simple</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label>Language</label>
+                                <select id="language">
+                                    <option>English</option>
+                                    <option>Hindi</option>
+                                    <option>Marathi</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <button class="generate-btn" onclick="generateContent()">
+                            ✨ Generate Content
+                        </button>
+
+                    </div>
+
+
+                    <!-- Output -->
+                    <div class="output-section">
+
+                        <div class="output-header">
+                            <div>
+                                <label>Generated Content</label>
+                                <span id="status">Ready to generate</span>
+                            </div>
+
+                            <div class="output-buttons">
+                                <button onclick="copyContent()">Copy</button>
+                                <button onclick="downloadContent()">Download</button>
+                                <button onclick="saveContent()">Save</button>
+                                <button onclick="clearContent()">Clear</button>
+                              </div>
+                        </div>
+
+                        <div id="generatedContent" class="output-box">
+                            <div class="empty-state">
+                                <div class="empty-icon">✨</div>
+                                <h3>Your generated content will appear here</h3>
+                                <p>
+                                    Enter your original content and click
+                                    "Generate Content".
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Recent Content -->
+            <!-- History Page -->
+<section class="history-card" id="historyPage">
+
+    <div class="section-heading">
+        <h2>Content History</h2>
+        <p>Your previously generated content will appear here.</p>
+    </div>
+
+    <div class="recent-item">
+        <div class="recent-icon">📝</div>
+        <div>
+            <strong>Marketing Content</strong>
+            <span>Generated recently</span>
+        </div>
+        <span class="tag">Blog Post</span>
+    </div>
+
+    <div class="recent-item">
+        <div class="recent-icon">📱</div>
+        <div>
+            <strong>Social Media Caption</strong>
+            <span>Generated yesterday</span>
+        </div>
+        <span class="tag">Social Media</span>
+    </div>
+
+</section>
+<!-- Saved Content Page -->
+<section class="history-card" id="savedPage">
+
+    <div class="section-heading">
+        <h2>Saved Content</h2>
+        <p>Your saved AI-generated content will appear here.</p>
+    </div>
+
+    <div class="recent-item">
+        <div class="recent-icon">💾</div>
+        <div>
+            <strong>Saved Marketing Content</strong>
+            <span>Saved recently</span>
+        </div>
+        <span class="tag">Blog Post</span>
+    </div>
+
+</section>
+<!-- Settings Page -->
+<section class="history-card" id="settingsPage">
+
+    <div class="section-heading">
+        <h2>Settings</h2>
+        <p>Customize your AI content creator.</p>
+    </div>
+
+   <div class="recent-item">
+    <div class="recent-icon">🌐</div>
+    <div>
+        <strong>Default Language</strong>
+        <select id="defaultLanguage">
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Marathi</option>
+        </select>
+    </div>
+</div>
+    <div class="recent-item">
+    <div class="recent-icon">🎨</div>
+    <div>
+        <strong>Default Tone</strong>
+        <select id="defaultTone">
+            <option>Professional</option>
+            <option>Friendly</option>
+            <option>Casual</option>
+            <option>Formal</option>
+        </select>
+    </div>
+</div>
+    <div class="recent-item">
+        <div class="recent-icon">🤖</div>
+        <div>
+            <strong>AI Model</strong>
+            <span>Gemini AI</span>
+        </div>
+    </div>
+
+</section>
+            <section class="recent-card"
+            id="recentGenerations">
+
+                <div class="recent-heading">
+                    <div>
+                        <h2>Recent Generations</h2>
+                        <p>Your latest AI-generated content</p>
+                    </div>
+
+                    <button>View All</button>
+                </div>
+
+                <div class="recent-item">
+                    <div class="recent-icon">📝</div>
+                    <div>
+                        <strong>Marketing Content</strong>
+                        <span>Generated recently</span>
+                    </div>
+                    <span class="tag">Blog Post</span>
+                </div>
+
+                <div class="recent-item">
+                    <div class="recent-icon">📱</div>
+                    <div>
+                        <strong>Social Media Caption</strong>
+                        <span>Generated yesterday</span>
+                    </div>
+                    <span class="tag">Social Media</span>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="/static/script.js"></script>
+
+</body>
+</html>
