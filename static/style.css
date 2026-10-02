@@ -3112,3 +3112,97 @@ textarea:focus-visible {
         grid-template-columns: 1fr;
     }
 }
+/* =========================================
+   CREATE CONTENT - MAJOR VISUAL REDESIGN
+========================================= */
+
+.creator-card {
+    padding: 30px !important;
+    border-radius: 26px !important;
+    background:
+        linear-gradient(135deg, #ffffff 0%, #f7f5ff 55%, #f2f5ff 100%) !important;
+    border: 1px solid rgba(104, 86, 210, 0.16) !important;
+    box-shadow:
+        0 18px 45px rgba(55, 43, 125, 0.11),
+        inset 0 1px 0 rgba(255,255,255,.9) !important;
+}
+
+.creator-card .section-heading {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(105, 88, 220, .10);
+}
+
+.creator-card .section-heading h2 {
+    font-size: 24px !important;
+    font-weight: 850 !important;
+    color: #292541 !important;
+}
+
+.creator-card .section-heading p {
+    margin-top: 7px;
+    font-size: 12px;
+    color: #817c92;
+}
+
+/* Two workspace panels */
+
+.input-section,
+.output-section {
+    padding: 22px !important;
+    border-radius: 20px !important;
+    background: rgba(255,255,255,.92) !important;
+    border: 1px solid rgba(105,88,220,.13) !important;
+    box-shadow: 0 10px 25px rgba(55,43,125,.06) !important;
+}
+
+/* Panel headings */
+
+.input-section h3,
+.output-section h3 {
+    font-size: 13px;
+    font-weight: 800;
+    color: #39334f;
+}
+
+/* Original content area */
+
+#originalContent {
+    min-height: 210px !important;
+    padding: 16px !important;
+    border-radius: 16px !important;
+    border: 1px solid #e2deee !important;
+    background: #faf9fe !important;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #38334b;
+    resize: vertical;
+}
+
+#originalContent:focus {
+    border-color: #7865df !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(120,100,230,.09) !important;
+}
+
+/* Generated result area */
+
+.output-box {
+    min-height: 210px !important;
+    padding: 17px !important;
+    border-radius: 16px !important;
+    border: 1px solid #e2deee !important;
+    background:
+        linear-gradient(135deg, #faf9ff, #f3f6ff) !important;
+    color: #37314d;
+    line-height: 1.7;
+}
+
+/* Option controls */
+
+.options {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 16px;
+    background: #f8f7fc;
+    border: 1px solid #e9e6f2;
+}
