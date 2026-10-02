@@ -2201,6 +2201,62 @@ input:focus {
     line-height: 1.7;
     color: #77738c;
 }
+/* ================================
+   PREMIUM AI HERO VISUAL - STEP 2
+================================ */
+
+.topbar {
+    isolation: isolate;
+}
+
+.topbar .hero-ai-visual {
+    position: absolute;
+    right: 38px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 250px;
+    height: 135px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.topbar .hero-ai-visual::before {
+    content: "✦  AI POWERED";
+    position: absolute;
+    top: 8px;
+    right: 18px;
+    padding: 7px 13px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(120,100,230,0.15);
+    color: #6757c9;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 20px rgba(80,65,150,0.08);
+}
+
+.topbar .hero-ai-visual::after {
+    content: "CONTENT  →  AI  →  RESULT";
+    position: absolute;
+    bottom: 5px;
+    right: 8px;
+    padding: 9px 14px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.88);
+    border: 1px solid rgba(120,100,230,0.12);
+    color: #77718f;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    box-shadow: 0 10px 25px rgba(70,55,140,0.08);
+}
+
+.topbar h1,
+.topbar p {
+    max-width: 58%;
+}
+
 
 /* Small AI label */
 .topbar::marker {
