@@ -2262,3 +2262,78 @@ input:focus {
 .topbar::marker {
     display: none;
 }
+/* ================================
+   AI HERO ORBIT VISUAL
+================================ */
+
+.hero-ai-visual {
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    width: 180px;
+    height: 120px;
+    transform: translateY(-50%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.ai-core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 58px;
+    height: 58px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #7059df, #647fe9);
+    color: white;
+    font-size: 25px;
+    box-shadow:
+        0 12px 30px rgba(100, 85, 220, 0.30),
+        0 0 35px rgba(120, 100, 240, 0.20);
+    animation: aiFloat 3s ease-in-out infinite;
+}
+
+.ai-orbit {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1px solid rgba(105, 88, 220, 0.22);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.orbit-one {
+    width: 105px;
+    height: 70px;
+    transform: translate(-50%, -50%) rotate(25deg);
+}
+
+.orbit-two {
+    width: 145px;
+    height: 95px;
+    transform: translate(-50%, -50%) rotate(-25deg);
+}
+
+@keyframes aiFloat {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(-6px);
+    }
+}
+
+@media (max-width: 750px) {
+    .hero-ai-visual {
+        display: none;
+    }
+
+    .topbar h1,
+    .topbar p {
+        max-width: 100%;
+    }
+}
