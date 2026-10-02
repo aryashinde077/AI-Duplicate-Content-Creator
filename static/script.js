@@ -17,7 +17,7 @@ async function generateContent() {
 
     try {
 
-        const response = await fetch("http://127.0.0.1:5000/generate", {
+        const response = await fetch("/generate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -145,7 +145,7 @@ menuItems.forEach(function(item) {
                     behavior: "smooth"
                 });
 
-                fetch("http://127.0.0.1:5000/history")
+                fetch("/history")
                     .then(response => response.json())
                     .then(data => {
 
@@ -191,7 +191,7 @@ menuItems.forEach(function(item) {
             behavior: "smooth"
         });
 
-        fetch("http://127.0.0.1:5000/saved")
+        fetch("/saved")
             .then(response => response.json())
             .then(data => {
 
@@ -277,7 +277,7 @@ async function saveContent() {
 
     try {
 
-        const response = await fetch("http://127.0.0.1:5000/save", {
+        const response = await fetch("/save", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
