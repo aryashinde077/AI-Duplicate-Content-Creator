@@ -4678,3 +4678,32 @@ body {
     background: #1b1925 !important;
     border-color: #735bd5 !important;
 }
+/* FINAL SAVED CONTENT DARK CARD */
+
+.saved-item {
+    background: #15141d !important;
+    color: #eeeaff !important;
+    border: 1px solid #292633 !important;
+    border-radius: 14px !important;
+    padding: 18px !important;
+    margin-top: 15px !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,.25) !important;
+}
+
+.saved-item strong {
+    color: #ffffff !important;
+    font-size: 14px;
+}
+
+.saved-item p {
+    color: #ddd8eb !important;
+    line-height: 1.6;
+}
+
+.saved-item b {
+    color: #ffffff !important;
+}
+
+.saved-item small {
+    color: #9e98ad !important;
+}
