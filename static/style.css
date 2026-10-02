@@ -4464,3 +4464,148 @@ body {
         border-radius: 17px !important;
     }
 }
+/* =========================================================
+   FINAL FIX - SAVED CONTENT + RECENT GENERATIONS VISIBILITY
+========================================================= */
+
+/* Recent + History + Saved containers */
+.recent-card,
+.history-card,
+.saved-card,
+.saved-content-card,
+.content-card {
+    background: #111118 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,.28) !important;
+}
+
+/* Headings */
+.recent-card h2,
+.recent-card h3,
+.recent-card h4,
+.history-card h2,
+.history-card h3,
+.history-card h4,
+.saved-card h2,
+.saved-card h3,
+.saved-card h4,
+.saved-content-card h2,
+.saved-content-card h3,
+.saved-content-card h4,
+.content-card h2,
+.content-card h3,
+.content-card h4 {
+    color: #ffffff !important;
+}
+
+/* Descriptions / small text */
+.recent-card p,
+.history-card p,
+.saved-card p,
+.saved-content-card p,
+.content-card p,
+.recent-card span,
+.history-card span,
+.saved-card span,
+.saved-content-card span,
+.content-card span {
+    color: #aaa5b8 !important;
+}
+
+/* Recent generation items */
+.recent-item {
+    background: #15141d !important;
+    color: #ffffff !important;
+    border: 1px solid #292633 !important;
+}
+
+.recent-item h3,
+.recent-item h4,
+.recent-item strong {
+    color: #ffffff !important;
+}
+
+.recent-item p,
+.recent-item span {
+    color: #aaa5b8 !important;
+}
+
+.recent-item:hover {
+    background: #1b1925 !important;
+    border-color: #735bd5 !important;
+}
+
+/* History items */
+.history-item {
+    background: #15141d !important;
+    color: #ffffff !important;
+    border: 1px solid #292633 !important;
+}
+
+.history-item h3,
+.history-item h4,
+.history-item strong {
+    color: #ffffff !important;
+}
+
+.history-item p,
+.history-item span {
+    color: #aaa5b8 !important;
+}
+
+/* Saved content items */
+.saved-item {
+    background: #15141d !important;
+    color: #ffffff !important;
+    border: 1px solid #292633 !important;
+}
+
+.saved-item h3,
+.saved-item h4,
+.saved-item strong {
+    color: #ffffff !important;
+}
+
+.saved-item p,
+.saved-item span {
+    color: #aaa5b8 !important;
+}
+
+/* Generated content text */
+.generated-content,
+.generated-text,
+.content-preview,
+.content-text {
+    color: #eeeaff !important;
+    background: transparent !important;
+}
+
+/* Buttons inside these sections */
+.recent-card button,
+.history-card button,
+.saved-card button,
+.saved-content-card button,
+.content-card button {
+    background: #191722 !important;
+    color: #c7b9ff !important;
+    border: 1px solid #302b3d !important;
+}
+
+.recent-card button:hover,
+.history-card button:hover,
+.saved-card button:hover,
+.saved-content-card button:hover,
+.content-card button:hover {
+    background: #28213b !important;
+    color: #ffffff !important;
+    border-color: #755dd9 !important;
+}
+
+/* Make empty-state text visible */
+.recent-card .empty-state,
+.history-card .empty-state,
+.saved-card .empty-state,
+.saved-content-card .empty-state {
+    color: #918b9f !important;
+}
