@@ -135,49 +135,122 @@ menuItems.forEach(function(item) {
 
         if (page === "history") {
 
-            const history = document.querySelector("#historyPage");
+    const history = document.querySelector("#historyPage");
 
-            if (history) {
+    if (history) {
 
-                history.style.display = "block";
+        history.style.display = "block";
 
-                history.scrollIntoView({
-                    behavior: "smooth"
-                });
+        history.scrollIntoView({
+            behavior: "smooth"
+        });
 
-                fetch("/history")
-                    .then(response => response.json())
-                    .then(data => {
+        fetch("/history")
+            .then(response => response.json())
+            .then(data => {
 
-                        const historyList = document.querySelector("#historyPage");
+                history.innerHTML = `
+                    <div class="creator-card"
+                        style="
+                            background:#111118;
+                            color:#ffffff;
+                            border:1px solid #292633;
+                            border-radius:20px;
+                            padding:26px;
+                        ">
 
-                        historyList.innerHTML = `
-                            <div class="creator-card">
-                                <h2>Content History</h2>
-                                <p>Your previously generated content</p>
+                        <h2 style="color:#ffffff;">
+                            Content History
+                        </h2>
 
-                                ${data.map(item => `
-                                    <div style="saved-item; margin-top:15px; border:1px solid #ddd; border-radius:10px;">
-                                        <strong>${item.content_type}</strong>
-                                        <p><b>Original:</b> ${item.original_content}</p>
-                                        <p><b>Generated:</b> ${item.generated_content}</p>
-                                        <small>${item.tone} • ${item.language}</small>
-                                    </div>
-                                `).join("")}
-                            </div>
-                        `;
+                        <p style="color:#aaa5b8;">
+                            Your previously generated content
+                        </p>
 
-                    })
-                    .catch(error => {
+                        ${
+                            data.length === 0
+                            ?
+                            `<p style="color:#aaa5b8;">
+                                No generated content yet.
+                            </p>`
+                            :
+                            data.map(item => `
+                                <div class="history-item"
+                                    style="
+                                        padding:18px;
+                                        margin-top:15px;
+                                        background:#15141d;
+                                        color:#eeeaff;
+                                        border:1px solid #292633;
+                                        border-radius:14px;
+                                    ">
 
-                        console.error(error);
+                                    <strong style="color:#ffffff;">
+                                        ${item.content_type}
+                                    </strong>
 
-                    });
+                                    <p style="
+                                        color:#ddd8eb;
+                                        line-height:1.6;
+                                    ">
+                                        <b style="color:#ffffff;">
+                                            Original:
+                                        </b>
+                                        ${item.original_content}
+                                    </p>
 
-            }
+                                    <p style="
+                                        color:#ddd8eb;
+                                        line-height:1.6;
+                                    ">
+                                        <b style="color:#ffffff;">
+                                            Generated:
+                                        </b>
+                                        ${item.generated_content}
+                                    </p>
 
-        }
+                                    <small style="color:#9e98ad;">
+                                        ${item.tone} • ${item.language}
+                                    </small>
 
+                                </div>
+                            `).join("")
+                        }
+
+                    </div>
+                `;
+
+            })
+            .catch(error => {
+
+                console.error(error);
+
+                history.innerHTML = `
+                    <div class="creator-card"
+                        style="
+                            background:#111118;
+                            color:#ffffff;
+                            border:1px solid #292633;
+                            border-radius:20px;
+                            padding:26px;
+                        ">
+
+                        <h2 style="color:#ffffff;">
+                            Content History
+                        </h2>
+
+                        <p style="color:#aaa5b8;">
+                            Could not load content history.
+                        </p>
+
+                    </div>
+                `;
+
+            });
+
+    }
+
+}
 
         if (page === "saved") {
 
