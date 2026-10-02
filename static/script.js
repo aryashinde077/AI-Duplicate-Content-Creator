@@ -196,25 +196,57 @@ menuItems.forEach(function(item) {
             .then(data => {
 
                 saved.innerHTML = `
-                    <div class="creator-card">
-                    
-                        <h2>Saved Content</h2>
+                    <div class="creator-card"
+                        style="
+                            background:#111118;
+                            color:#ffffff;
+                            border:1px solid #292633;
+                            border-radius:20px;
+                            padding:26px;
+                        ">
 
-                        <p>Your saved AI-generated content</p>
+                        <h2 style="color:#ffffff;">
+                            Saved Content
+                        </h2>
 
-                        ${data.length === 0
-                            ? "<p>No saved content yet.</p>"
-                            : data.map(item => `
-                                <div style="padding:15px; margin-top:15px; border:1px solid #ddd; border-radius:10px;">
+                        <p style="color:#aaa5b8;">
+                            Your saved AI-generated content
+                        </p>
 
-                                    <strong>${item.content_type}</strong>
+                        ${
+                            data.length === 0
+                            ?
+                            `<p style="color:#aaa5b8;">
+                                No saved content yet.
+                            </p>`
+                            :
+                            data.map(item => `
+                                <div class="saved-item"
+                                    style="
+                                        background:#15141d;
+                                        color:#eeeaff;
+                                        border:1px solid #292633;
+                                        border-radius:14px;
+                                        padding:18px;
+                                        margin-top:15px;
+                                    ">
 
-                                    <p>
-                                        <b>Generated Content:</b><br>
+                                    <strong style="color:#ffffff;">
+                                        ${item.content_type}
+                                    </strong>
+
+                                    <p style="
+                                        color:#ddd8eb;
+                                        line-height:1.6;
+                                    ">
+                                        <b style="color:#ffffff;">
+                                            Generated Content:
+                                        </b>
+                                        <br>
                                         ${item.generated_content}
                                     </p>
 
-                                    <small>
+                                    <small style="color:#9e98ad;">
                                         ${item.tone} • ${item.language}
                                     </small>
 
@@ -231,9 +263,23 @@ menuItems.forEach(function(item) {
                 console.error(error);
 
                 saved.innerHTML = `
-                    <div class="creator-card">
-                        <h2>Saved Content</h2>
-                        <p>Could not load saved content.</p>
+                    <div class="creator-card"
+                        style="
+                            background:#111118;
+                            color:#ffffff;
+                            border:1px solid #292633;
+                            border-radius:20px;
+                            padding:26px;
+                        ">
+
+                        <h2 style="color:#ffffff;">
+                            Saved Content
+                        </h2>
+
+                        <p style="color:#aaa5b8;">
+                            Could not load saved content.
+                        </p>
+
                     </div>
                 `;
 
