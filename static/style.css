@@ -3206,3 +3206,621 @@ textarea:focus-visible {
     background: #f8f7fc;
     border: 1px solid #e9e6f2;
 }
+/* =========================================
+   PREMIUM DASHBOARD BACKGROUND
+========================================= */
+
+body {
+    background: #eeecf7 !important;
+}
+
+.main {
+    background:
+        radial-gradient(
+            circle at 85% 8%,
+            rgba(117, 96, 230, 0.13),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 15% 70%,
+            rgba(91, 126, 235, 0.08),
+            transparent 28%
+        ),
+        #eeecf7 !important;
+}
+
+/* Stronger separation between dashboard sections */
+
+.topbar {
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(124, 102, 255, 0.20),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f5f2ff
+        ) !important;
+}
+
+.creator-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8f6ff
+        ) !important;
+}
+
+.recent-card,
+.history-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8f7ff
+        ) !important;
+}
+/* =========================================================
+   FINAL AI DUPLICATE CONTENT CREATOR - PREMIUM UI
+   VISUAL ONLY - NO FUNCTIONALITY CHANGES
+========================================================= */
+
+/* ---------- GLOBAL BACKGROUND ---------- */
+
+body {
+    background: #eceaf5 !important;
+}
+
+.main {
+    background:
+        radial-gradient(
+            circle at 85% 5%,
+            rgba(116, 94, 235, 0.14),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 10% 65%,
+            rgba(91, 126, 235, 0.08),
+            transparent 25%
+        ),
+        #eceaf5 !important;
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+.sidebar {
+    background:
+        radial-gradient(
+            circle at 20% 8%,
+            rgba(132, 110, 255, 0.22),
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            #111026 0%,
+            #211b43 55%,
+            #292052 100%
+        ) !important;
+
+    box-shadow:
+        8px 0 30px rgba(30, 24, 70, 0.16);
+}
+
+.logo-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #806bea,
+            #5c76e9
+        ) !important;
+
+    box-shadow:
+        0 0 25px rgba(115, 95, 235, 0.45) !important;
+}
+
+.sidebar nav a {
+    border-radius: 13px !important;
+    margin: 6px 0 !important;
+}
+
+.sidebar nav a.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(127, 108, 239, 0.32),
+            rgba(127, 108, 239, 0.08)
+        ) !important;
+
+    box-shadow:
+        inset 3px 0 0 #9a8aef,
+        0 8px 20px rgba(50, 40, 120, 0.16) !important;
+}
+
+
+/* ---------- HERO ---------- */
+
+.topbar {
+    min-height: 185px !important;
+    padding: 34px 38px !important;
+
+    border-radius: 28px !important;
+
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(125, 101, 240, 0.22),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 75% 100%,
+            rgba(86, 135, 240, 0.14),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f5f2ff 55%,
+            #f0f4ff 100%
+        ) !important;
+
+    border: 1px solid rgba(110, 90, 220, 0.16) !important;
+
+    box-shadow:
+        0 20px 45px rgba(60, 48, 130, 0.12),
+        inset 0 1px 0 rgba(255,255,255,.9) !important;
+}
+
+.topbar h1 {
+    font-size: 36px !important;
+    font-weight: 850 !important;
+    color: #292344 !important;
+    letter-spacing: -1.2px !important;
+}
+
+.topbar p {
+    color: #77718b !important;
+    font-size: 13px !important;
+}
+
+
+/* ---------- AI HERO VISUAL ---------- */
+
+.hero-ai-visual {
+    right: 55px !important;
+}
+
+.ai-core {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 21px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7059df,
+            #5e80e9
+        ) !important;
+
+    box-shadow:
+        0 15px 35px rgba(95, 78, 210, .30),
+        0 0 35px rgba(120, 100, 240, .18) !important;
+}
+
+
+/* ---------- STATISTICS ---------- */
+
+.stats {
+    gap: 20px !important;
+    margin-bottom: 30px !important;
+}
+
+.stat-card {
+    min-height: 145px !important;
+    padding: 25px !important;
+
+    border: none !important;
+    border-radius: 22px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f5f2ff
+        ) !important;
+
+    box-shadow:
+        0 13px 32px rgba(58, 46, 130, .10) !important;
+}
+
+.stat-card:nth-child(2) {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f1f6ff
+        ) !important;
+}
+
+.stat-card:nth-child(3) {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f7f0ff
+        ) !important;
+}
+
+.stat-icon {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+
+    border-radius: 18px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7059df,
+            #8173e9
+        ) !important;
+
+    color: white !important;
+
+    box-shadow:
+        0 10px 24px rgba(105, 88, 220, .25) !important;
+}
+
+.stat-card:nth-child(2) .stat-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #5484e9,
+            #70a3f2
+        ) !important;
+}
+
+.stat-card:nth-child(3) .stat-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #895bd9,
+            #b16ce8
+        ) !important;
+}
+
+.stat-card h2 {
+    font-size: 36px !important;
+    font-weight: 850 !important;
+    color: #28233f !important;
+}
+
+
+/* ---------- CREATE CONTENT ---------- */
+
+.creator-card {
+    padding: 30px !important;
+    border-radius: 26px !important;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(119, 97, 235, .10),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f7f5ff
+        ) !important;
+
+    border: 1px solid rgba(104, 86, 210, .15) !important;
+
+    box-shadow:
+        0 18px 45px rgba(55,43,125,.10) !important;
+}
+
+.creator-card .section-heading h2 {
+    font-size: 24px !important;
+    font-weight: 850 !important;
+    color: #292541 !important;
+}
+
+.creator-card .section-heading p {
+    color: #817c92 !important;
+}
+
+
+/* ---------- INPUT / OUTPUT PANELS ---------- */
+
+.input-section,
+.output-section {
+    padding: 22px !important;
+
+    border-radius: 20px !important;
+
+    background:
+        rgba(255,255,255,.94) !important;
+
+    border: 1px solid rgba(105,88,220,.13) !important;
+
+    box-shadow:
+        0 10px 26px rgba(55,43,125,.06) !important;
+}
+
+.input-section:hover,
+.output-section:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 15px 30px rgba(55,43,125,.09) !important;
+}
+
+
+/* ---------- TEXT AREA ---------- */
+
+#originalContent {
+    min-height: 210px !important;
+
+    padding: 17px !important;
+
+    border-radius: 16px !important;
+
+    border: 1px solid #e1ddef !important;
+
+    background: #faf9fe !important;
+
+    font-size: 13px !important;
+    line-height: 1.7 !important;
+}
+
+#originalContent:focus {
+    border-color: #7865df !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 0 0 4px rgba(120,100,230,.09) !important;
+}
+
+
+/* ---------- OPTIONS ---------- */
+
+.options {
+    margin-top: 18px !important;
+    padding: 17px !important;
+
+    border-radius: 16px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8f7fc,
+            #f3f5ff
+        ) !important;
+
+    border: 1px solid #e6e2f0 !important;
+}
+
+.option-group select {
+    min-height: 44px !important;
+
+    border-radius: 12px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dfdbea !important;
+}
+
+
+/* ---------- GENERATED OUTPUT ---------- */
+
+.output-box {
+    min-height: 210px !important;
+
+    padding: 17px !important;
+
+    border-radius: 16px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf9ff,
+            #f1f5ff
+        ) !important;
+
+    border: 1px solid #dfdbea !important;
+
+    line-height: 1.7 !important;
+}
+
+
+/* ---------- GENERATE BUTTON ---------- */
+
+.generate-btn {
+    min-height: 48px !important;
+
+    border-radius: 14px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6653d8,
+            #8069e8,
+            #5d7ee9
+        ) !important;
+
+    box-shadow:
+        0 12px 25px rgba(105,88,220,.28) !important;
+}
+
+.generate-btn:hover {
+    transform: translateY(-3px) !important;
+
+    box-shadow:
+        0 18px 35px rgba(105,88,220,.35) !important;
+}
+
+
+/* ---------- ACTION BUTTONS ---------- */
+
+.output-buttons button {
+    border-radius: 10px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #ded9eb !important;
+
+    color: #6255a7 !important;
+}
+
+.output-buttons button:hover {
+    background: #f3f0ff !important;
+
+    border-color: #c9c0e9 !important;
+}
+
+
+/* ---------- RECENT GENERATIONS ---------- */
+
+.recent-card {
+    padding: 26px !important;
+
+    border-radius: 24px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f7f5ff
+        ) !important;
+
+    border: 1px solid rgba(105,88,220,.13) !important;
+
+    box-shadow:
+        0 14px 34px rgba(55,45,125,.08) !important;
+}
+
+.recent-heading h2 {
+    font-size: 21px !important;
+    font-weight: 850 !important;
+    color: #292541 !important;
+}
+
+.recent-item {
+    border-radius: 15px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e7e3f0 !important;
+}
+
+.recent-item:hover {
+    transform: translateX(4px) !important;
+
+    border-color: #cec5ec !important;
+
+    box-shadow:
+        0 8px 20px rgba(70,55,145,.08) !important;
+}
+
+
+/* ---------- HISTORY ---------- */
+
+.history-card {
+    border-radius: 24px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8f7ff
+        ) !important;
+
+    border: 1px solid rgba(105,88,220,.13) !important;
+
+    box-shadow:
+        0 14px 34px rgba(55,45,125,.08) !important;
+}
+
+
+/* ---------- SMOOTH ANIMATION ---------- */
+
+.stat-card,
+.creator-card,
+.recent-card,
+.history-card {
+    animation: premiumAppear .45s ease both;
+}
+
+@keyframes premiumAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 750px) {
+
+    .topbar {
+        min-height: 155px !important;
+        padding: 24px 20px !important;
+        border-radius: 20px !important;
+    }
+
+    .topbar h1 {
+        font-size: 26px !important;
+    }
+
+    .hero-ai-visual {
+        display: none !important;
+    }
+
+    .stats {
+        grid-template-columns: 1fr !important;
+    }
+
+    .creator-card {
+        padding: 20px !important;
+        border-radius: 20px !important;
+    }
+
+    .input-section,
+    .output-section {
+        padding: 17px !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .main {
+        padding: 12px !important;
+    }
+
+    .topbar h1 {
+        font-size: 22px !important;
+    }
+
+    .stat-card {
+        min-height: 105px !important;
+    }
+
+    .creator-card {
+        padding: 16px !important;
+    }
+
+    .recent-card,
+    .history-card {
+        padding: 17px !important;
+    }
+}
