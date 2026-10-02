@@ -197,8 +197,7 @@ menuItems.forEach(function(item) {
 
                 saved.innerHTML = `
                     <div class="creator-card">
-                     style="background:#111118 !important; color:#ffffff !important; border:1px solid #292633 !important;">
-
+                    
                         <h2>Saved Content</h2>
 
                         <p>Your saved AI-generated content</p>
