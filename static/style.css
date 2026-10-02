@@ -4609,3 +4609,72 @@ body {
 .saved-content-card .empty-state {
     color: #918b9f !important;
 }
+/* =========================================================
+   FINAL DARK MODE - ALL CONTENT LISTS
+========================================================= */
+
+/* Catch all saved / recent / history containers */
+.main [class*="saved"],
+.main [class*="recent"],
+.main [class*="history"] {
+    background: #111118 !important;
+    color: #ffffff !important;
+    border-color: rgba(255,255,255,.08) !important;
+}
+
+/* Catch cards inside them */
+.main [class*="saved"] *,
+.main [class*="recent"] *,
+.main [class*="history"] * {
+    color: inherit;
+}
+
+/* Main headings */
+.main [class*="saved"] h1,
+.main [class*="saved"] h2,
+.main [class*="saved"] h3,
+.main [class*="saved"] h4,
+.main [class*="recent"] h1,
+.main [class*="recent"] h2,
+.main [class*="recent"] h3,
+.main [class*="recent"] h4,
+.main [class*="history"] h1,
+.main [class*="history"] h2,
+.main [class*="history"] h3,
+.main [class*="history"] h4 {
+    color: #ffffff !important;
+}
+
+/* Normal text */
+.main [class*="saved"] p,
+.main [class*="saved"] span,
+.main [class*="recent"] p,
+.main [class*="recent"] span,
+.main [class*="history"] p,
+.main [class*="history"] span {
+    color: #aaa5b8 !important;
+}
+
+/* Individual cards */
+.main [class*="saved"] > div,
+.main [class*="recent"] > div,
+.main [class*="history"] > div {
+    background: #15141d !important;
+    border-color: #292633 !important;
+}
+
+/* Content text inside cards */
+.main [class*="saved"] [class*="content"],
+.main [class*="recent"] [class*="content"],
+.main [class*="history"] [class*="content"] {
+    background: transparent !important;
+    color: #eeeaff !important;
+}
+
+/* Hover */
+.main [class*="saved"] > div:hover,
+.main [class*="recent"] > div:hover,
+.main [class*="history"] > div:hover {
+    background: #1b1925 !important;
+    border-color: #735bd5 !important;
+}
