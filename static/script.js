@@ -157,7 +157,7 @@ menuItems.forEach(function(item) {
                                 <p>Your previously generated content</p>
 
                                 ${data.map(item => `
-                                    <div style="padding:15px; margin-top:15px; border:1px solid #ddd; border-radius:10px;">
+                                    <div style="saved-item; margin-top:15px; border:1px solid #ddd; border-radius:10px;">
                                         <strong>${item.content_type}</strong>
                                         <p><b>Original:</b> ${item.original_content}</p>
                                         <p><b>Generated:</b> ${item.generated_content}</p>
