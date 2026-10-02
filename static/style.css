@@ -3824,3 +3824,643 @@ body {
         padding: 17px !important;
     }
 }
+/* =========================================================
+   FINAL DARK AI SAAS THEME
+   AI DUPLICATE CONTENT CREATOR
+   VISUAL DESIGN ONLY
+========================================================= */
+
+/* =========================
+   GLOBAL
+========================= */
+
+html,
+body {
+    background: #09090d !important;
+    color: #f4f2ff !important;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.main {
+    background:
+        radial-gradient(
+            circle at 80% 5%,
+            rgba(112, 78, 220, 0.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 10% 70%,
+            rgba(55, 90, 210, 0.07),
+            transparent 25%
+        ),
+        #0b0b10 !important;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    background:
+        radial-gradient(
+            circle at 20% 5%,
+            rgba(124, 92, 255, 0.18),
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            #0b0b10 0%,
+            #11101a 55%,
+            #151224 100%
+        ) !important;
+
+    border-right: 1px solid rgba(255,255,255,.07) !important;
+
+    box-shadow:
+        8px 0 35px rgba(0,0,0,.25);
+}
+
+.logo-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #7759e8,
+            #4f78e8
+        ) !important;
+
+    box-shadow:
+        0 0 25px rgba(115,90,235,.45) !important;
+}
+
+.sidebar nav a {
+    color: #9691a8 !important;
+    border-radius: 12px !important;
+}
+
+.sidebar nav a:hover {
+    color: #ffffff !important;
+
+    background:
+        rgba(255,255,255,.06) !important;
+
+    transform: translateX(4px);
+}
+
+.sidebar nav a.active {
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(119,91,230,.28),
+            rgba(119,91,230,.07)
+        ) !important;
+
+    box-shadow:
+        inset 3px 0 0 #8c73f0,
+        0 8px 25px rgba(80,60,170,.12) !important;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.topbar {
+    min-height: 185px !important;
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(122,91,240,.22),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 75% 100%,
+            rgba(58,105,225,.13),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #14131c,
+            #111019 55%,
+            #151329
+        ) !important;
+
+    border:
+        1px solid rgba(143,117,245,.18) !important;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.30),
+        inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+
+.topbar h1 {
+    color: #ffffff !important;
+    font-size: 36px !important;
+    font-weight: 850 !important;
+}
+
+.topbar p {
+    color: #9791a8 !important;
+}
+
+.topbar p::before {
+    color: #55e39a !important;
+    text-shadow:
+        0 0 10px rgba(70,230,150,.8);
+}
+
+
+/* =========================
+   AI HERO
+========================= */
+
+.ai-core {
+    background:
+        linear-gradient(
+            135deg,
+            #7656e8,
+            #4f7bea
+        ) !important;
+
+    box-shadow:
+        0 15px 40px rgba(101,78,225,.40),
+        0 0 45px rgba(110,85,240,.20) !important;
+}
+
+.ai-orbit {
+    border-color:
+        rgba(139,117,241,.30) !important;
+}
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stat-card {
+    background:
+        linear-gradient(
+            135deg,
+            #15141d,
+            #111119
+        ) !important;
+
+    border:
+        1px solid rgba(255,255,255,.07) !important;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25) !important;
+}
+
+.stat-card:nth-child(2) {
+    background:
+        linear-gradient(
+            135deg,
+            #141820,
+            #101319
+        ) !important;
+}
+
+.stat-card:nth-child(3) {
+    background:
+        linear-gradient(
+            135deg,
+            #18141f,
+            #121019
+        ) !important;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px) !important;
+
+    border-color:
+        rgba(137,111,240,.25) !important;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.35),
+        0 0 25px rgba(108,83,220,.08) !important;
+}
+
+.stat-card span {
+    color: #918b9f !important;
+}
+
+.stat-card h2 {
+    color: #ffffff !important;
+    font-size: 36px !important;
+}
+
+.stat-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #7255df,
+            #536fe5
+        ) !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 10px 25px rgba(101,78,220,.35) !important;
+}
+
+.stat-card:nth-child(2) .stat-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #477de2,
+            #4f9bea
+        ) !important;
+}
+
+.stat-card:nth-child(3) .stat-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #8854d8,
+            #b35fe2
+        ) !important;
+}
+
+
+/* =========================
+   CREATE CONTENT
+========================= */
+
+.creator-card {
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(118,91,235,.13),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #15141d,
+            #111119
+        ) !important;
+
+    border:
+        1px solid rgba(255,255,255,.08) !important;
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.28) !important;
+}
+
+.creator-card .section-heading {
+    border-bottom:
+        1px solid rgba(255,255,255,.07) !important;
+}
+
+.creator-card .section-heading h2 {
+    color: #ffffff !important;
+}
+
+.creator-card .section-heading p {
+    color: #918b9f !important;
+}
+
+
+/* =========================
+   INPUT / OUTPUT PANELS
+========================= */
+
+.input-section,
+.output-section {
+    background:
+        linear-gradient(
+            145deg,
+            #111117,
+            #0d0d12
+        ) !important;
+
+    border:
+        1px solid rgba(255,255,255,.08) !important;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25) !important;
+}
+
+.input-section:hover,
+.output-section:hover {
+    border-color:
+        rgba(130,105,235,.22) !important;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.32),
+        0 0 25px rgba(105,80,220,.05) !important;
+}
+
+
+/* =========================
+   LABELS
+========================= */
+
+.input-section label,
+.output-section label,
+.option-group label {
+    color: #aaa4b7 !important;
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
+
+#originalContent {
+    background:
+        #0b0b10 !important;
+
+    color:
+        #f3f0ff !important;
+
+    border:
+        1px solid #292633 !important;
+}
+
+#originalContent::placeholder {
+    color: #625e6d !important;
+}
+
+#originalContent:focus {
+    background: #0d0d13 !important;
+
+    border-color:
+        #775de0 !important;
+
+    box-shadow:
+        0 0 0 4px rgba(119,93,224,.12) !important;
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
+
+.options {
+    background:
+        #0d0d13 !important;
+
+    border:
+        1px solid rgba(255,255,255,.07) !important;
+}
+
+.option-group select {
+    background:
+        #15141c !important;
+
+    color:
+        #eeeaff !important;
+
+    border:
+        1px solid #2b2935 !important;
+}
+
+.option-group select:hover,
+.option-group select:focus {
+    background:
+        #191721 !important;
+
+    border-color:
+        #725bdb !important;
+
+    box-shadow:
+        0 0 0 3px rgba(114,91,219,.10) !important;
+}
+
+
+/* =========================
+   GENERATED OUTPUT
+========================= */
+
+.output-box {
+    background:
+        linear-gradient(
+            135deg,
+            #0c0c12,
+            #11101a
+        ) !important;
+
+    color:
+        #eeeaff !important;
+
+    border:
+        1px solid #292633 !important;
+}
+
+
+/* =========================
+   GENERATE BUTTON
+========================= */
+
+.generate-btn {
+    background:
+        linear-gradient(
+            135deg,
+            #704fdc,
+            #815ee7,
+            #4d76e5
+        ) !important;
+
+    color:
+        #ffffff !important;
+
+    box-shadow:
+        0 12px 30px rgba(103,76,220,.35),
+        0 0 25px rgba(103,76,220,.10) !important;
+}
+
+.generate-btn:hover {
+    box-shadow:
+        0 18px 40px rgba(103,76,220,.45),
+        0 0 30px rgba(103,76,220,.15) !important;
+}
+
+
+/* =========================
+   COPY / DOWNLOAD / SAVE
+========================= */
+
+.output-buttons button {
+    background:
+        #15141c !important;
+
+    color:
+        #b4a8e8 !important;
+
+    border:
+        1px solid #2c2938 !important;
+}
+
+.output-buttons button:hover {
+    background:
+        #211d2e !important;
+
+    color:
+        #ffffff !important;
+
+    border-color:
+        #725bd7 !important;
+
+    box-shadow:
+        0 8px 20px rgba(80,60,160,.18) !important;
+}
+
+
+/* =========================
+   RECENT GENERATIONS
+========================= */
+
+.recent-card,
+.history-card {
+    background:
+        linear-gradient(
+            135deg,
+            #15141d,
+            #101016
+        ) !important;
+
+    border:
+        1px solid rgba(255,255,255,.07) !important;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25) !important;
+}
+
+.recent-heading h2 {
+    color:
+        #ffffff !important;
+}
+
+.recent-heading span {
+    background:
+        rgba(115,88,225,.15) !important;
+
+    color:
+        #aa98f2 !important;
+}
+
+.recent-item {
+    background:
+        #101016 !important;
+
+    border:
+        1px solid #25232d !important;
+
+    color:
+        #eeeaff !important;
+}
+
+.recent-item:hover {
+    background:
+        #15131d !important;
+
+    border-color:
+        rgba(124,99,229,.30) !important;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #39334d;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6753b4;
+}
+
+
+/* =========================
+   SELECTION
+========================= */
+
+::selection {
+    background:
+        rgba(125,96,235,.35);
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    .main {
+        background: #0b0b10 !important;
+    }
+
+    .topbar {
+        min-height: 155px !important;
+        padding: 24px 20px !important;
+        border-radius: 20px !important;
+    }
+
+    .topbar h1 {
+        font-size: 26px !important;
+    }
+
+    .hero-ai-visual {
+        display: none !important;
+    }
+
+    .stat-card {
+        min-height: 110px !important;
+    }
+
+    .creator-card {
+        padding: 20px !important;
+        border-radius: 20px !important;
+    }
+
+    .input-section,
+    .output-section {
+        padding: 17px !important;
+    }
+
+    .recent-card,
+    .history-card {
+        border-radius: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .main {
+        padding: 12px !important;
+    }
+
+    .topbar h1 {
+        font-size: 22px !important;
+    }
+
+    .creator-card {
+        padding: 16px !important;
+    }
+
+    .stat-card {
+        border-radius: 17px !important;
+    }
+}
