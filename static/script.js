@@ -602,3 +602,117 @@ function clearContent() {
     document.getElementById("generatedContent").innerHTML = "";
     document.getElementById("status").textContent = "Ready";
 }
+// =========================
+// AUTHENTICATION
+// =========================
+
+function showSignup() {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("signupForm").style.display = "block";
+    document.getElementById("authMessage").textContent = "";
+}
+
+function showLogin() {
+    document.getElementById("signupForm").style.display = "none";
+    document.getElementById("loginForm").style.display = "block";
+    document.getElementById("authMessage").textContent = "";
+}
+
+async function signupUser() {
+
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value;
+
+    const message = document.getElementById("authMessage");
+
+    if (!name || !email || !password) {
+        message.textContent = "Please fill all fields.";
+        return;
+    }
+
+    try {
+
+        const response = await fetch("/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            message.textContent = "Account created successfully!";
+
+            setTimeout(() => {
+                showLogin();
+            }, 1000);
+
+        } else {
+
+            message.textContent = data.error || "Signup failed.";
+
+        }
+
+    } catch (error) {
+
+        message.textContent = "Unable to connect to server.";
+
+    }
+}
+
+
+async function loginUser() {
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+
+    const message = document.getElementById("authMessage");
+
+    if (!email || !password) {
+        message.textContent = "Please enter email and password.";
+        return;
+    }
+
+    try {
+
+        const response = await fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            message.textContent = "Login successful!";
+
+            setTimeout(() => {
+                document.getElementById("authScreen").style.display = "none";
+            }, 500);
+
+        } else {
+
+            message.textContent = data.error || "Invalid email or password.";
+
+        }
+
+    } catch (error) {
+
+        message.textContent = "Unable to connect to server.";
+
+    }
+}
