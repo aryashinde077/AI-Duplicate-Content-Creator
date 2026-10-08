@@ -4865,10 +4865,20 @@ body {
 .analytics-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 20px;
 }
 
+.analytics-header select {
+    background: #202020;
+    color: #ffffff;
+    border: 1px solid #444444;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-width: 125px;
+    flex-shrink: 0;
+}
 .analytics-header h2 {
     margin: 0;
     color: #ffffff;
