@@ -4894,9 +4894,11 @@ body {
 .analytics-header select {
     background: #202020;
     color: #ffffff;
-    border: 1px solid #333333;
+    border: 1px solid #444444;
     border-radius: 8px;
-    padding: 8px 12px;
+    padding: 8px 10px;
+    width: 125px;
+    font-size: 13px;
 }
 
 .activity-chart {
