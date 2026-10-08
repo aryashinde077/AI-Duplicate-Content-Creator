@@ -716,3 +716,36 @@ async function loginUser() {
 
     }
 }
+// =========================
+// CHECK LOGIN STATUS
+// =========================
+
+async function checkAuthStatus() {
+
+    try {
+
+        const response = await fetch("/auth-status");
+        const data = await response.json();
+
+        const authScreen = document.getElementById("authScreen");
+
+        if (data.logged_in) {
+
+            authScreen.style.display = "none";
+
+        } else {
+
+            authScreen.style.display = "flex";
+
+        }
+
+    } catch (error) {
+
+        console.log("Authentication check failed:", error);
+
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    checkAuthStatus();
+});
