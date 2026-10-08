@@ -1,3 +1,7 @@
+// =========================
+// GENERATE CONTENT
+// =========================
+
 async function generateContent() {
 
     const original = document.getElementById("originalContent").value;
@@ -43,6 +47,7 @@ async function generateContent() {
         `;
 
         status.textContent = "Content generated";
+
         loadTotalGenerations();
         loadContentCreated();
         loadRecentGenerations();
@@ -50,6 +55,7 @@ async function generateContent() {
     } catch (error) {
 
         console.error(error);
+
         status.textContent = "Error";
 
         alert("Could not generate content. Please make sure the Python backend is running.");
@@ -57,6 +63,10 @@ async function generateContent() {
     }
 }
 
+
+// =========================
+// COPY CONTENT
+// =========================
 
 function copyContent() {
 
@@ -70,8 +80,13 @@ function copyContent() {
     navigator.clipboard.writeText(output.innerText);
 
     alert("Content copied successfully!");
+
 }
 
+
+// =========================
+// DOWNLOAD CONTENT
+// =========================
 
 function downloadContent() {
 
@@ -82,9 +97,10 @@ function downloadContent() {
         return;
     }
 
-    const file = new Blob([output.innerText], {
-        type: "text/plain"
-    });
+    const file = new Blob(
+        [output.innerText],
+        { type: "text/plain" }
+    );
 
     const link = document.createElement("a");
 
@@ -94,345 +110,115 @@ function downloadContent() {
     link.click();
 
     URL.revokeObjectURL(link.href);
+
 }
 
 
+// =========================
 // SIDEBAR MENU
+// =========================
 
-const menuItems = document.querySelectorAll("nav a");
+document.addEventListener("DOMContentLoaded", function() {
 
-menuItems.forEach(function(item) {
+    const menuItems = document.querySelectorAll("nav a");
 
-    item.addEventListener("click", function() {
+    menuItems.forEach(function(item) {
 
-        menuItems.forEach(function(menu) {
-            menu.classList.remove("active");
-        });
+        item.addEventListener("click", function() {
 
-        this.classList.add("active");
-
-        const page = this.getAttribute("data-page");
-
-
-        if (page === "dashboard") {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
+            menuItems.forEach(function(menu) {
+                menu.classList.remove("active");
             });
 
-        }
+            this.classList.add("active");
+
+            const page = this.getAttribute("data-page");
 
 
-        if (page === "create") {
+            // DASHBOARD
+            if (page === "dashboard") {
 
-            document.querySelector(".creator-card").scrollIntoView({
-                behavior: "smooth"
-            });
-
-        }
-
-
-        if (page === "history") {
-
-    const history = document.querySelector("#historyPage");
-
-    if (history) {
-
-        history.style.display = "block";
-
-        history.scrollIntoView({
-            behavior: "smooth"
-        });
-
-        fetch("/history")
-            .then(response => response.json())
-            .then(data => {
-
-                history.innerHTML = `
-                    <div class="creator-card"
-                        style="
-                            background:#111118;
-                            color:#ffffff;
-                            border:1px solid #292633;
-                            border-radius:20px;
-                            padding:26px;
-                        ">
-
-                        <h2 style="color:#ffffff;">
-                            Content History
-                        </h2>
-
-                        <p style="color:#aaa5b8;">
-                            Your previously generated content
-                        </p>
-
-                        ${
-                            data.length === 0
-                            ?
-                            `<p style="color:#aaa5b8;">
-                                No generated content yet.
-                            </p>`
-                            :
-                            data.map(item => `
-                                <div class="history-item"
-                                    style="
-                                        padding:18px;
-                                        margin-top:15px;
-                                        background:#15141d;
-                                        color:#eeeaff;
-                                        border:1px solid #292633;
-                                        border-radius:14px;
-                                    ">
-
-                                    <strong style="color:#ffffff;">
-                                        ${item.content_type}
-                                    </strong>
-
-                                    <p style="
-                                        color:#ddd8eb;
-                                        line-height:1.6;
-                                    ">
-                                        <b style="color:#ffffff;">
-                                            Original:
-                                        </b>
-                                        ${item.original_content}
-                                    </p>
-
-                                    <p style="
-                                        color:#ddd8eb;
-                                        line-height:1.6;
-                                    ">
-                                        <b style="color:#ffffff;">
-                                            Generated:
-                                        </b>
-                                        ${item.generated_content}
-                                    </p>
-
-                                    <small style="color:#9e98ad;">
-                                        ${item.tone} • ${item.language}
-                                    </small>
-
-                                </div>
-                            `).join("")
-                        }
-
-                    </div>
-                `;
-
-            })
-            .catch(error => {
-
-                console.error(error);
-
-                history.innerHTML = `
-                    <div class="creator-card"
-                        style="
-                            background:#111118;
-                            color:#ffffff;
-                            border:1px solid #292633;
-                            border-radius:20px;
-                            padding:26px;
-                        ">
-
-                        <h2 style="color:#ffffff;">
-                            Content History
-                        </h2>
-
-                        <p style="color:#aaa5b8;">
-                            Could not load content history.
-                        </p>
-
-                    </div>
-                `;
-
-            });
-
-    }
-
-}
-
-        if (page === "saved") {
-
-    const saved = document.querySelector("#savedPage");
-
-    if (saved) {
-
-        saved.style.display = "block";
-
-        saved.scrollIntoView({
-            behavior: "smooth"
-        });
-
-        fetch("/saved")
-            .then(response => response.json())
-            .then(data => {
-
-                saved.innerHTML = `
-                    <div class="creator-card"
-                        style="
-                            background:#111118;
-                            color:#ffffff;
-                            border:1px solid #292633;
-                            border-radius:20px;
-                            padding:26px;
-                        ">
-
-                        <h2 style="color:#ffffff;">
-                            Saved Content
-                        </h2>
-
-                        <p style="color:#aaa5b8;">
-                            Your saved AI-generated content
-                        </p>
-
-                        ${
-                            data.length === 0
-                            ?
-                            `<p style="color:#aaa5b8;">
-                                No saved content yet.
-                            </p>`
-                            :
-                            data.map(item => `
-                                <div class="saved-item"
-                                    style="
-                                        background:#15141d;
-                                        color:#eeeaff;
-                                        border:1px solid #292633;
-                                        border-radius:14px;
-                                        padding:18px;
-                                        margin-top:15px;
-                                    ">
-
-                                    <strong style="color:#ffffff;">
-                                        ${item.content_type}
-                                    </strong>
-
-                                    <p style="
-                                        color:#ddd8eb;
-                                        line-height:1.6;
-                                    ">
-                                        <b style="color:#ffffff;">
-                                            Generated Content:
-                                        </b>
-                                        <br>
-                                        ${item.generated_content}
-                                    </p>
-
-                                    <small style="color:#9e98ad;">
-                                        ${item.tone} • ${item.language}
-                                    </small>
-
-                                </div>
-                            `).join("")
-                        }
-
-                    </div>
-                `;
-
-            })
-            .catch(error => {
-
-                console.error(error);
-
-                saved.innerHTML = `
-                    <div class="creator-card"
-                        style="
-                            background:#111118;
-                            color:#ffffff;
-                            border:1px solid #292633;
-                            border-radius:20px;
-                            padding:26px;
-                        ">
-
-                        <h2 style="color:#ffffff;">
-                            Saved Content
-                        </h2>
-
-                        <p style="color:#aaa5b8;">
-                            Could not load saved content.
-                        </p>
-
-                    </div>
-                `;
-
-            });
-
-    }
-
-}
-        if (page === "settings") {
-
-            const settings = document.querySelector("#settingsPage");
-
-            if (settings) {
-
-                settings.style.display = "block";
-
-                settings.scrollIntoView({
+                window.scrollTo({
+                    top: 0,
                     behavior: "smooth"
                 });
 
             }
 
-        }
+
+            // CREATE CONTENT
+            if (page === "create") {
+
+                const creator = document.querySelector(".creator-card");
+
+                if (creator) {
+
+                    creator.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+
+
+            // HISTORY
+            if (page === "history") {
+
+                loadHistoryPage();
+
+            }
+
+
+            // SAVED CONTENT
+            if (page === "saved") {
+
+                loadSavedPage();
+
+            }
+
+
+            // SETTINGS
+            if (page === "settings") {
+
+                const settings = document.querySelector("#settingsPage");
+
+                if (settings) {
+
+                    settings.style.display = "block";
+
+                    settings.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+
+        });
 
     });
 
 });
-async function saveContent() {
 
-    const original = document.getElementById("originalContent").value;
-    const generated = document.getElementById("generatedContent").innerText;
 
-    const type = document.getElementById("contentType").value;
-    const tone = document.getElementById("tone").value;
-    const language = document.getElementById("language").value;
+// =========================
+// LOAD HISTORY PAGE
+// =========================
 
-    if (generated.trim() === "") {
-        alert("Please generate content first.");
+async function loadHistoryPage() {
+
+    const history = document.querySelector("#historyPage");
+
+    if (!history) {
         return;
     }
 
-    try {
+    history.style.display = "block";
 
-        const response = await fetch("/save", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                content: original,
-                generated: generated,
-                type: type,
-                tone: tone,
-                language: language
-            })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.error || "Save failed");
-        }
-
-        alert("Content saved successfully!");
-        loadSavedContentCount();
-
-    } catch (error) {
-
-        console.error(error);
-        alert("Could not save content.");
-
-    }
-}
-async function loadRecentGenerations() {
-
-    const recent = document.getElementById("recentGenerations");
-
-    if (!recent) {
-        return;
-    }
+    history.scrollIntoView({
+        behavior: "smooth"
+    });
 
     try {
 
@@ -440,103 +226,438 @@ async function loadRecentGenerations() {
 
         const data = await response.json();
 
-        const recentItems = data.slice(0, 3);
+        history.innerHTML = `
+            <div class="creator-card"
+                style="
+                    background:#111118;
+                    color:#ffffff;
+                    border:1px solid #292633;
+                    border-radius:20px;
+                    padding:26px;
+                ">
 
-        recent.innerHTML = `
-            <div class="recent-heading">
-                <div>
-                    <h2>Recent Generations</h2>
-                    <p>Your latest AI-generated content</p>
-                </div>
-            </div>
+                <h2 style="color:#ffffff;">
+                    Content History
+                </h2>
 
-            ${
-                recentItems.length === 0
-                ? "<p>No generated content yet.</p>"
-                : recentItems.map(item => `
-                    <div class="recent-item">
+                <p style="color:#aaa5b8;">
+                    Your previously generated content
+                </p>
 
-                        <div class="recent-icon">✨</div>
+                ${
+                    data.length === 0
+                    ?
+                    `
+                    <p style="color:#aaa5b8;">
+                        No generated content yet.
+                    </p>
+                    `
+                    :
+                    data.map(item => `
+                        <div class="history-item"
+                            style="
+                                padding:18px;
+                                margin-top:15px;
+                                background:#15141d;
+                                color:#eeeaff;
+                                border:1px solid #292633;
+                                border-radius:14px;
+                            ">
 
-                        <div>
-                            <strong>${item.content_type}</strong>
-                            <span>Generated recently</span>
+                            <strong style="color:#ffffff;">
+                                ${item.content_type}
+                            </strong>
+
+                            <p style="
+                                color:#ddd8eb;
+                                line-height:1.6;
+                            ">
+                                <b style="color:#ffffff;">
+                                    Original:
+                                </b>
+                                ${item.original_content}
+                            </p>
+
+                            <p style="
+                                color:#ddd8eb;
+                                line-height:1.6;
+                            ">
+                                <b style="color:#ffffff;">
+                                    Generated:
+                                </b>
+                                ${item.generated_content}
+                            </p>
+
+                            <small style="color:#9e98ad;">
+                                ${item.tone} • ${item.language}
+                            </small>
+
                         </div>
+                    `).join("")
+                }
 
-                        <span class="tag">${item.tone}</span>
-
-                    </div>
-                `).join("")
-            }
+            </div>
         `;
 
     } catch (error) {
 
-        console.error("Could not load recent generations:", error);
+        console.error(error);
+
+        history.innerHTML = `
+            <div class="creator-card"
+                style="
+                    background:#111118;
+                    color:#ffffff;
+                    border:1px solid #292633;
+                    border-radius:20px;
+                    padding:26px;
+                ">
+
+                <h2 style="color:#ffffff;">
+                    Content History
+                </h2>
+
+                <p style="color:#aaa5b8;">
+                    Could not load content history.
+                </p>
+
+            </div>
+        `;
 
     }
+
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    loadRecentGenerations();
-});
+// =========================
+// LOAD SAVED PAGE
+// =========================
+
+async function loadSavedPage() {
+
+    const saved = document.querySelector("#savedPage");
+
+    if (!saved) {
+        return;
+    }
+
+    saved.style.display = "block";
+
+    saved.scrollIntoView({
+        behavior: "smooth"
+    });
+
+    try {
+
+        const response = await fetch("/saved");
+
+        const data = await response.json();
+
+        saved.innerHTML = `
+            <div class="creator-card"
+                style="
+                    background:#111118;
+                    color:#ffffff;
+                    border:1px solid #292633;
+                    border-radius:20px;
+                    padding:26px;
+                ">
+
+                <h2 style="color:#ffffff;">
+                    Saved Content
+                </h2>
+
+                <p style="color:#aaa5b8;">
+                    Your saved AI-generated content
+                </p>
+
+                ${
+                    data.length === 0
+                    ?
+                    `
+                    <p style="color:#aaa5b8;">
+                        No saved content yet.
+                    </p>
+                    `
+                    :
+                    data.map(item => `
+                        <div class="saved-item"
+                            style="
+                                background:#15141d;
+                                color:#eeeaff;
+                                border:1px solid #292633;
+                                border-radius:14px;
+                                padding:18px;
+                                margin-top:15px;
+                            ">
+
+                            <strong style="color:#ffffff;">
+                                ${item.content_type}
+                            </strong>
+
+                            <p style="
+                                color:#ddd8eb;
+                                line-height:1.6;
+                            ">
+                                <b style="color:#ffffff;">
+                                    Generated Content:
+                                </b>
+                                <br>
+                                ${item.generated_content}
+                            </p>
+
+                            <small style="color:#9e98ad;">
+                                ${item.tone} • ${item.language}
+                            </small>
+
+                        </div>
+                    `).join("")
+                }
+
+            </div>
+        `;
+
+    } catch (error) {
+
+        console.error(error);
+
+        saved.innerHTML = `
+            <div class="creator-card"
+                style="
+                    background:#111118;
+                    color:#ffffff;
+                    border:1px solid #292633;
+                    border-radius:20px;
+                    padding:26px;
+                ">
+
+                <h2 style="color:#ffffff;">
+                    Saved Content
+                </h2>
+
+                <p style="color:#aaa5b8;">
+                    Could not load saved content.
+                </p>
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+// =========================
+// SAVE CONTENT
+// =========================
+
+async function saveContent() {
+
+    const original =
+        document.getElementById("originalContent").value;
+
+    const generated =
+        document.getElementById("generatedContent").innerText;
+
+    const type =
+        document.getElementById("contentType").value;
+
+    const tone =
+        document.getElementById("tone").value;
+
+    const language =
+        document.getElementById("language").value;
+
+
+    if (generated.trim() === "") {
+
+        alert("Please generate content first.");
+
+        return;
+
+    }
+
+
+    try {
+
+        const response = await fetch("/save", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                content: original,
+
+                generated: generated,
+
+                type: type,
+
+                tone: tone,
+
+                language: language
+
+            })
+
+        });
+
+
+        const data = await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error || "Save failed"
+            );
+
+        }
+
+
+        alert("Content saved successfully!");
+
+        loadSavedContentCount();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Could not save content.");
+
+    }
+
+}
+
+
+// =========================
+// RECENT AI ACTIVITY
+// =========================
 
 async function loadRecentGenerations() {
 
-    const recent = document.getElementById("recentGenerations");
+    const recent =
+        document.getElementById("recentGenerations");
 
     if (!recent) {
         return;
     }
 
+
     try {
 
         const response = await fetch("/history");
+
         const data = await response.json();
 
         const recentItems = data.slice(0, 3);
 
-        recent.innerHTML = recentItems.length === 0
-            ? <p style="color:#888;">No generated content yet.</p>
-            : recentItems.map(item => `
-                
-                <div class="recent-item">
 
-                    <div class="recent-icon">
-                        ✨
-                    </div>
+        if (recentItems.length === 0) {
 
-                    <div class="recent-content">
-                        <strong>${item.content_type}</strong>
-                        <span>Generated recently</span>
-                    </div>
+            recent.innerHTML = `
+                <p style="color:#888;">
+                    No generated content yet.
+                </p>
+            `;
 
-                    <span class="tag">
-                        ${item.tone}
+            return;
+
+        }
+
+
+        recent.innerHTML = recentItems.map(item => `
+
+            <div class="recent-item">
+
+                <div class="recent-icon">
+                    ✨
+                </div>
+
+                <div class="recent-content">
+
+                    <strong>
+                        ${item.content_type}
+                    </strong>
+
+                    <span>
+                        Generated recently
                     </span>
 
                 </div>
 
-            `).join("");
+                <span class="tag">
+                    ${item.tone}
+                </span>
+
+            </div>
+
+        `).join("");
+
 
     } catch (error) {
 
-        console.error("Could not load recent generations:", error);
+        console.error(
+            "Could not load recent generations:",
+            error
+        );
 
     }
+
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    loadTotalGenerations();
-});
+
+// =========================
+// TOTAL GENERATIONS
+// =========================
+
+async function loadTotalGenerations() {
+
+    const total =
+        document.getElementById("totalGenerations");
+
+    if (!total) {
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch("/history");
+
+        const data = await response.json();
+
+        total.textContent = data.length;
+
+
+    } catch (error) {
+
+        console.error(
+            "Could not load total generations:",
+            error
+        );
+
+    }
+
+}
+
+
+// =========================
+// CONTENT CREATED
+// =========================
+
 async function loadContentCreated() {
 
-    const contentCreated = document.getElementById("contentCreated");
+    const contentCreated =
+        document.getElementById("contentCreated");
 
     if (!contentCreated) {
         return;
     }
+
 
     try {
 
@@ -546,24 +667,32 @@ async function loadContentCreated() {
 
         contentCreated.textContent = data.length;
 
+
     } catch (error) {
 
-        console.error("Could not load content created:", error);
+        console.error(
+            "Could not load content created:",
+            error
+        );
 
     }
+
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    loadContentCreated();
-});
+// =========================
+// SAVED CONTENT COUNT
+// =========================
+
 async function loadSavedContentCount() {
 
-    const savedCount = document.getElementById("savedContent");
+    const savedCount =
+        document.getElementById("savedContent");
 
     if (!savedCount) {
         return;
     }
+
 
     try {
 
@@ -572,170 +701,346 @@ async function loadSavedContentCount() {
         const data = await response.json();
 
         savedCount.textContent = data.length;
-        console.log("Saved count updated:", data.length);
+
+        console.log(
+            "Saved count updated:",
+            data.length
+        );
+
 
     } catch (error) {
 
-        console.error("Could not load saved content count:", error);
+        console.error(
+            "Could not load saved content count:",
+            error
+        );
 
     }
+
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    loadSavedContentCount();
-});
+// =========================
+// SETTINGS - LANGUAGE
+// =========================
+
 document.addEventListener("DOMContentLoaded", function() {
 
-    const defaultLanguage = document.getElementById("defaultLanguage");
-    const language = document.getElementById("language");
+    const defaultLanguage =
+        document.getElementById("defaultLanguage");
+
+    const language =
+        document.getElementById("language");
+
 
     if (defaultLanguage && language) {
 
-        defaultLanguage.addEventListener("change", function() {
+        defaultLanguage.addEventListener(
+            "change",
+            function() {
 
-            language.value = defaultLanguage.value;
+                language.value =
+                    defaultLanguage.value;
 
-        });
+            }
+        );
 
     }
 
 });
+
+
+// =========================
+// SETTINGS - TONE
+// =========================
+
 document.addEventListener("DOMContentLoaded", function() {
 
-    const defaultTone = document.getElementById("defaultTone");
-    const tone = document.getElementById("tone");
+    const defaultTone =
+        document.getElementById("defaultTone");
+
+    const tone =
+        document.getElementById("tone");
+
 
     if (defaultTone && tone) {
 
-        defaultTone.addEventListener("change", function() {
+        defaultTone.addEventListener(
+            "change",
+            function() {
 
-            tone.value = defaultTone.value;
+                tone.value =
+                    defaultTone.value;
 
-        });
+            }
+        );
 
     }
 
 });
+
+
+// =========================
+// CLEAR CONTENT
+// =========================
+
 function clearContent() {
-    document.getElementById("originalContent").value = "";
-    document.getElementById("generatedContent").innerHTML = "";
-    document.getElementById("status").textContent = "Ready";
+
+    document.getElementById(
+        "originalContent"
+    ).value = "";
+
+    document.getElementById(
+        "generatedContent"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "status"
+    ).textContent = "Ready";
+
 }
+
+
 // =========================
 // AUTHENTICATION
 // =========================
 
 function showSignup() {
-    document.getElementById("loginForm").style.display = "none";
-    document.getElementById("signupForm").style.display = "block";
-    document.getElementById("authMessage").textContent = "";
+
+    document.getElementById(
+        "loginForm"
+    ).style.display = "none";
+
+    document.getElementById(
+        "signupForm"
+    ).style.display = "block";
+
+    document.getElementById(
+        "authMessage"
+    ).textContent = "";
+
 }
 
+
 function showLogin() {
-    document.getElementById("signupForm").style.display = "none";
-    document.getElementById("loginForm").style.display = "block";
-    document.getElementById("authMessage").textContent = "";
+
+    document.getElementById(
+        "signupForm"
+    ).style.display = "none";
+
+    document.getElementById(
+        "loginForm"
+    ).style.display = "block";
+
+    document.getElementById(
+        "authMessage"
+    ).textContent = "";
+
 }
+
+
+// =========================
+// SIGN UP
+// =========================
 
 async function signupUser() {
 
-    const name = document.getElementById("signupName").value.trim();
-    const email = document.getElementById("signupEmail").value.trim();
-    const password = document.getElementById("signupPassword").value;
+    const name =
+        document.getElementById(
+            "signupName"
+        ).value.trim();
 
-    const message = document.getElementById("authMessage");
+    const email =
+        document.getElementById(
+            "signupEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "signupPassword"
+        ).value;
+
+    const message =
+        document.getElementById(
+            "authMessage"
+        );
+
 
     if (!name || !email || !password) {
-        message.textContent = "Please fill all fields.";
+
+        message.textContent =
+            "Please fill all fields.";
+
         return;
+
     }
+
 
     try {
 
-        const response = await fetch("/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                password: password
-            })
-        });
+        const response = await fetch(
+            "/signup",
+            {
+                method: "POST",
 
-        const data = await response.json();
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    name: name,
+
+                    email: email,
+
+                    password: password
+
+                })
+
+            }
+        );
+
+
+        const data =
+            await response.json();
+
 
         if (response.ok) {
 
-            message.textContent = "Account created successfully!";
+            message.textContent =
+                "Account created successfully!";
 
-            setTimeout(() => {
+
+            setTimeout(function() {
+
                 showLogin();
+
             }, 1000);
+
 
         } else {
 
-            message.textContent = data.error || "Signup failed.";
+            message.textContent =
+                data.error ||
+                "Signup failed.";
 
         }
 
+
     } catch (error) {
 
-        message.textContent = "Unable to connect to server.";
+        console.error(error);
+
+        message.textContent =
+            "Unable to connect to server.";
 
     }
+
 }
 
+
+// =========================
+// LOGIN
+// =========================
 
 async function loginUser() {
 
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value;
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
 
-    const message = document.getElementById("authMessage");
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+    const message =
+        document.getElementById(
+            "authMessage"
+        );
+
 
     if (!email || !password) {
-        message.textContent = "Please enter email and password.";
+
+        message.textContent =
+            "Please enter email and password.";
+
         return;
+
     }
+
 
     try {
 
-        const response = await fetch("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        });
+        const response = await fetch(
+            "/login",
+            {
+                method: "POST",
 
-        const data = await response.json();
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
 
+                body: JSON.stringify({
+
+                    email: email,
+
+                    password: password
+
+                })
+
+            }
+        );
+
+
+        const data =
+            await response.json();
         if (response.ok) {
 
-            message.textContent = "Login successful!";
+            message.textContent =
+                "Login successful!";
 
-            setTimeout(() => {
-                document.getElementById("authScreen").style.display = "none";
+
+            setTimeout(function() {
+
+                document.getElementById(
+                    "authScreen"
+                ).style.display = "none";
+
+
+                loadTotalGenerations();
+                loadContentCreated();
+                loadSavedContentCount();
+                loadRecentGenerations();
+
+
             }, 500);
+
 
         } else {
 
-            message.textContent = data.error || "Invalid email or password.";
+            message.textContent =
+                data.error ||
+                "Invalid email or password.";
 
         }
 
+
     } catch (error) {
 
-        message.textContent = "Unable to connect to server.";
+        console.error(error);
+
+        message.textContent =
+            "Unable to connect to server.";
 
     }
+
 }
+
+
 // =========================
 // CHECK LOGIN STATUS
 // =========================
@@ -744,39 +1049,93 @@ async function checkAuthStatus() {
 
     try {
 
-        const response = await fetch("/auth-status");
-        const data = await response.json();
+        const response =
+            await fetch("/auth-status");
 
-        const authScreen = document.getElementById("authScreen");
+        const data =
+            await response.json();
+
+        const authScreen =
+            document.getElementById(
+                "authScreen"
+            );
+
+
+        if (!authScreen) {
+            return;
+        }
+
 
         if (data.logged_in) {
 
-            authScreen.style.display = "none";
+            authScreen.style.display =
+                "none";
+
+
+            loadTotalGenerations();
+            loadContentCreated();
+            loadSavedContentCount();
+            loadRecentGenerations();
+
 
         } else {
 
-            authScreen.style.display = "flex";
+            authScreen.style.display =
+                "flex";
 
         }
 
+
     } catch (error) {
 
-        console.log("Authentication check failed:", error);
+        console.error(
+            "Authentication check failed:",
+            error
+        );
 
     }
+
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    checkAuthStatus();
-});
+
+// =========================
+// VIEW HISTORY BUTTON
+// =========================
+
 function showPage(page) {
 
-    const menuItem = document.querySelector(
-        'nav a[data-page="' + page + '"]'
-    );
+    const menuItem =
+        document.querySelector(
+            'nav a[data-page="' + page + '"]'
+        );
+
 
     if (menuItem) {
+
         menuItem.click();
+
     }
 
 }
+
+
+// =========================
+// INITIAL PAGE LOAD
+// =========================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        checkAuthStatus();
+
+        loadTotalGenerations();
+
+        loadContentCreated();
+
+        loadSavedContentCount();
+
+        loadRecentGenerations();
+
+    }
+);
