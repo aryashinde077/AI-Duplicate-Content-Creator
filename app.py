@@ -86,7 +86,7 @@ Return only the rewritten content.
 
     api_key = os.environ.get("GEMINI_API_KEY")
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent"
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent"
 
     body = {
         "contents": [
@@ -137,14 +137,15 @@ Return only the rewritten content.
 
     except Exception as error:
 
-        print("GEMINI ERROR:", error)
+    print("GEMINI ERROR:", error)
 
-        if hasattr(error, "read"):
-            print("GEMINI DETAILS:", error.read().decode("utf-8"))
+    if hasattr(error, "read"):
+        details = error.read().decode("utf-8")
+        print("GEMINI DETAILS:", details)
 
-        return jsonify({
-            "error": "Gemini is temporarily busy. Please try again in a moment."
-        }), 503
+    return jsonify({
+        "error": "Gemini request failed. Please check Render logs."
+    }), 500
 
 @app.route("/save", methods=["POST"])
 def save_content():
