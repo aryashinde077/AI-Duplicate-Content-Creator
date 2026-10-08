@@ -137,15 +137,15 @@ Return only the rewritten content.
 
     except Exception as error:
 
-    print("GEMINI ERROR:", error)
+        print("GEMINI ERROR:", error)
 
-    if hasattr(error, "read"):
-        details = error.read().decode("utf-8")
-        print("GEMINI DETAILS:", details)
+        if hasattr(error, "read"):
+            details = error.read().decode("utf-8")
+            print("GEMINI DETAILS:", details)
 
-    return jsonify({
-        "error": "Gemini request failed. Please check Render logs."
-    }), 500
+        return jsonify({
+            "error": "Gemini request failed. Please check Render logs."
+        }), 500
 
 @app.route("/save", methods=["POST"])
 def save_content():
