@@ -749,3 +749,14 @@ async function checkAuthStatus() {
 document.addEventListener("DOMContentLoaded", function () {
     checkAuthStatus();
 });
+function showPage(page) {
+
+    const menuItem = document.querySelector(
+        'nav a[data-page="' + page + '"]'
+    );
+
+    if (menuItem) {
+        menuItem.click();
+    }
+
+}
