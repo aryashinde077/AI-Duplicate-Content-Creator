@@ -349,5 +349,5 @@ def get_saved_content():
 # Initialize database when application starts
 init_db()
 
-if _name_ == "_main_":
+if _name_ == "__main__":
     app.run(debug=True)
