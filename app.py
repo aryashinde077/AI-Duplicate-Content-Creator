@@ -69,6 +69,114 @@ def history():
         })
 
     return jsonify(history_data)
+@app.route("/signup", methods=["POST"])
+def signup():
+
+    data = request.get_json()
+
+    name = data.get("name", "").strip()
+    email = data.get("email", "").strip().lower()
+    password = data.get("password", "")
+
+    if not name or not email or not password:
+        return jsonify({
+            "error": "All fields are required."
+        }), 400
+
+    if len(password) < 6:
+        return jsonify({
+            "error": "Password must be at least 6 characters."
+        }), 400
+
+    hashed_password = generate_password_hash(password)
+
+    try:
+        conn = sqlite3.connect("content.db")
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            INSERT INTO users (name, email, password)
+            VALUES (?, ?, ?)
+        """, (name, email, hashed_password))
+
+        conn.commit()
+        conn.close()
+
+        return jsonify({
+            "message": "Account created successfully!"
+        }), 201
+
+    except sqlite3.IntegrityError:
+
+        return jsonify({
+            "error": "Email already registered."
+        }), 409
+
+
+@app.route("/login", methods=["POST"])
+def login():
+
+    data = request.get_json()
+
+    email = data.get("email", "").strip().lower()
+    password = data.get("password", "")
+
+    if not email or not password:
+        return jsonify({
+            "error": "Email and password are required."
+        }), 400
+
+    conn = sqlite3.connect("content.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT id, name, email, password
+        FROM users
+        WHERE email = ?
+    """, (email,))
+
+    user = cursor.fetchone()
+    conn.close()
+
+    if user and check_password_hash(user[3], password):
+
+        session["user_id"] = user[0]
+        session["user_name"] = user[1]
+        session["user_email"] = user[2]
+
+        return jsonify({
+            "message": "Login successful!",
+            "name": user[1]
+        })
+
+    return jsonify({
+        "error": "Invalid email or password."
+    }), 401
+
+
+@app.route("/logout", methods=["POST"])
+def logout():
+
+    session.clear()
+
+    return jsonify({
+        "message": "Logged out successfully."
+    })
+
+
+@app.route("/auth-status", methods=["GET"])
+def auth_status():
+
+    if "user_id" in session:
+        return jsonify({
+            "logged_in": True,
+            "name": session.get("user_name"),
+            "email": session.get("user_email")
+        })
+
+    return jsonify({
+        "logged_in": False
+    })
 @app.route("/generate", methods=["POST"])
 def generate():
 
