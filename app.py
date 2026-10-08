@@ -114,11 +114,27 @@ Return only the rewritten content.
 
     try:
 
-        with urllib.request.urlopen(req) as response:
-            result = json.loads(response.read().decode("utf-8"))
+        result = None
+
+        for attempt in range(3):
+
+            try:
+                with urllib.request.urlopen(req, timeout=60) as response:
+                    result = json.loads(response.read().decode("utf-8"))
+                break
+
+            except urllib.error.HTTPError as error:
+
+                if error.code == 503 and attempt < 2:
+                    import time
+                    wait_time = 2 ** attempt
+                    print(f"Gemini busy. Retrying in {wait_time} seconds...")
+                    time.sleep(wait_time)
+                    continue
+
+                raise
 
         generated_text = result["candidates"][0]["content"]["parts"][0]["text"]
-
         conn = sqlite3.connect("content.db")
         cursor = conn.cursor()
 
