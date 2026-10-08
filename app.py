@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, session
 from flask_cors import CORS
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import json
 import urllib.request
@@ -7,6 +8,7 @@ import sqlite3
 
 app = Flask(__name__)
 CORS(app)
+app.secret_key = os.environ.get("SECRET_KEY", "ai-content-secret-key")
 def init_db():
     conn = sqlite3.connect("content.db")
     cursor = conn.cursor()
