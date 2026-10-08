@@ -482,30 +482,50 @@ document.addEventListener("DOMContentLoaded", function() {
     loadRecentGenerations();
 });
 
-async function loadTotalGenerations() {
+async function loadRecentGenerations() {
 
-    const total = document.getElementById("totalGenerations");
+    const recent = document.getElementById("recentGenerations");
 
-    if (!total) {
+    if (!recent) {
         return;
     }
 
     try {
 
         const response = await fetch("/history");
-
         const data = await response.json();
 
-        total.textContent = data.length;
-        console.log("TOTAL FROM DATABASE:", data.length);
+        const recentItems = data.slice(0, 3);
+
+        recent.innerHTML = recentItems.length === 0
+            ? <p style="color:#888;">No generated content yet.</p>
+            : recentItems.map(item => `
+                
+                <div class="recent-item">
+
+                    <div class="recent-icon">
+                        ✨
+                    </div>
+
+                    <div class="recent-content">
+                        <strong>${item.content_type}</strong>
+                        <span>Generated recently</span>
+                    </div>
+
+                    <span class="tag">
+                        ${item.tone}
+                    </span>
+
+                </div>
+
+            `).join("");
 
     } catch (error) {
 
-        console.error("Could not load total generations:", error);
+        console.error("Could not load recent generations:", error);
 
     }
 }
-
 
 document.addEventListener("DOMContentLoaded", function() {
     loadTotalGenerations();
