@@ -5039,9 +5039,9 @@ body {
 }
 
 .recent-header button {
-    background: #ffffff;
-    color: #111111;
-    border: none;
+    background: #252525;
+    color: #ffffff;
+    border: 1px solid #3a3a3a;
     padding: 9px 15px;
     border-radius: 8px;
     font-weight: 600;
