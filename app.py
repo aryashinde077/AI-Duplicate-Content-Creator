@@ -346,6 +346,8 @@ def get_saved_content():
         })
 
     return jsonify(saved_data)
-if __name__ == "__main__":
-    init_db()
+# Initialize database when application starts
+init_db()
+
+if _name_ == "_main_":
     app.run(debug=True)
