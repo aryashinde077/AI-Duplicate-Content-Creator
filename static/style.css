@@ -4850,3 +4850,79 @@ body {
     color: #ffffff;
     font-size: 14px;
 }
+/* =========================
+   GENERATION ANALYTICS
+   ========================= */
+
+.analytics-section {
+    margin: 25px 0;
+    padding: 24px;
+    background: #151515;
+    border: 1px solid #292929;
+    border-radius: 16px;
+}
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.analytics-header h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.analytics-header p {
+    margin: 6px 0 0;
+    color: #888888;
+    font-size: 13px;
+}
+
+.analytics-header select {
+    background: #202020;
+    color: #ffffff;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.activity-chart {
+    height: 220px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.chart-bars {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.bar-item {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.bar {
+    width: 55%;
+    min-height: 20px;
+    background: #ffffff;
+    border-radius: 6px 6px 2px 2px;
+    transition: 0.3s;
+}
+
+.bar:hover {
+    opacity: 0.7;
+    transform: translateY(-4px);
+}
