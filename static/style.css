@@ -4742,91 +4742,111 @@ body {
     color: #9e98ad !important;
 }
 /* =========================
-   AUTHENTICATION SCREEN
+   DARK AUTHENTICATION SCREEN
    ========================= */
 
 .auth-screen {
     position: fixed;
     inset: 0;
-    background: #f5f7fb;
+    background: #0b0b0b;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    font-family: Arial, sans-serif;
 }
 
 .auth-box {
     width: 390px;
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    background: #151515;
+    padding: 42px;
+    border-radius: 18px;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     text-align: center;
 }
 
 .auth-logo {
-    font-size: 42px;
-    margin-bottom: 5px;
+    font-size: 38px;
+    margin-bottom: 10px;
 }
 
 .auth-box h1 {
     margin: 0;
+    color: #ffffff;
     font-size: 28px;
+    font-weight: 700;
 }
 
 .auth-subtitle {
-    color: #777;
-    margin-bottom: 28px;
+    color: #999999;
+    margin: 8px 0 30px;
+    font-size: 14px;
 }
 
 .auth-box h2 {
+    color: #ffffff;
     margin-bottom: 20px;
+    font-size: 21px;
 }
 
 .auth-box input {
     width: 100%;
     box-sizing: border-box;
-    padding: 13px;
+    padding: 14px;
     margin-bottom: 14px;
-    border: 1px solid #ddd;
+    background: #202020;
+    color: #ffffff;
+    border: 1px solid #333333;
     border-radius: 10px;
     font-size: 14px;
     outline: none;
 }
 
+.auth-box input::placeholder {
+    color: #777777;
+}
+
 .auth-box input:focus {
-    border-color: #6c63ff;
+    border-color: #666666;
+    background: #242424;
 }
 
 .auth-btn {
     width: 100%;
-    padding: 13px;
+    padding: 14px;
     border: none;
     border-radius: 10px;
-    background: #6c63ff;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
+    background: #ffffff;
+    color: #111111;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .auth-btn:hover {
-    opacity: 0.9;
+    background: #dddddd;
 }
 
 .auth-switch {
-    margin-top: 20px;
-    color: #777;
+    margin-top: 22px;
+    color: #888888;
     font-size: 14px;
 }
 
 .auth-switch span {
-    color: #6c63ff;
+    color: #ffffff;
     font-weight: 600;
     cursor: pointer;
 }
 
+.auth-switch span:hover {
+    text-decoration: underline;
+}
+
 #authMessage {
     margin-top: 15px;
+    color: #ffffff;
     font-size: 14px;
 }
