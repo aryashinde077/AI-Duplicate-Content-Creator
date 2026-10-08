@@ -86,7 +86,7 @@ Return only the rewritten content.
 
     api_key = os.environ.get("GEMINI_API_KEY")
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent"
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
 
     body = {
         "contents": [
