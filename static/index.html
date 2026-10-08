@@ -316,6 +316,84 @@
 
 
     <script src="/static/script.js"></script>
+<!-- Authentication Screen -->
+<div id="authScreen" class="auth-screen">
 
+    <div class="auth-box">
+
+        <div class="auth-logo">
+            ✨
+        </div>
+
+        <h1>AI Content Studio</h1>
+        <p class="auth-subtitle">Create smarter. Rewrite better.</p>
+
+        <!-- Login -->
+        <div id="loginForm">
+
+            <h2>Welcome Back 👋</h2>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email address"
+            >
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+            >
+
+            <button onclick="loginUser()" class="auth-btn">
+                Login
+            </button>
+
+            <p class="auth-switch">
+                Don't have an account?
+                <span onclick="showSignup()">Sign Up</span>
+            </p>
+
+        </div>
+
+        <!-- Signup -->
+        <div id="signupForm" style="display:none;">
+
+            <h2>Create Account 🚀</h2>
+
+            <input
+                type="text"
+                id="signupName"
+                placeholder="Full name"
+            >
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="Email address"
+            >
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create password"
+            >
+
+            <button onclick="signupUser()" class="auth-btn">
+                Create Account
+            </button>
+
+            <p class="auth-switch">
+                Already have an account?
+                <span onclick="showLogin()">Login</span>
+            </p>
+
+        </div>
+
+        <p id="authMessage"></p>
+
+    </div>
+
+</div>
 </body>
 </html>
