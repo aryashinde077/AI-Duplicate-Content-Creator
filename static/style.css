@@ -4982,9 +4982,9 @@ body {
 
 .analytics-row strong {
     color: #ffffff;
-    font-size: 13px;
-    background: #262626;
-    padding: 4px 8px;
+    font-size: 12px;
+    background: #292929;
+    padding: 5px 9px;
     border-radius: 6px;
 }
 
@@ -5002,7 +5002,6 @@ body {
     background: linear-gradient(90deg, #8b5cf6, #ec4899);
     border-radius: 10px;
 }
-
 @media (max-width: 800px) {
     .analytics-grid {
         grid-template-columns: 1fr;
