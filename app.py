@@ -7,7 +7,7 @@ import urllib.request
 import urllib.error
 import sqlite3
 
-app = Flask(_name_)
+app = Flask(__name__)
 CORS(app)
 app.secret_key = os.environ.get("SECRET_KEY", "ai-content-secret-key")
 
@@ -392,5 +392,5 @@ def get_saved_content():
 init_db()
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.run(debug=True)
