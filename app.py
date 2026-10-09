@@ -211,10 +211,10 @@ Keep the main meaning, but use different wording and sentence structure.
 Return only the rewritten content.
 """
 
-    url = (
-        "https://generativelanguage.googleapis.com/"
-        "v1beta/models/gemini-3.8-flash:generateContent"
-    )
+   models = [
+        "gemini-3.8-flash",
+        "gemini-3.5-flash-lite"
+    ]
 
     body = {
         "contents": [
@@ -223,63 +223,53 @@ Return only the rewritten content.
     }
 
     request_data = json.dumps(body).encode("utf-8")
-
-    req = urllib.request.Request(
-        url,
-        data=request_data,
-        headers={
-            "Content-Type": "application/json",
-            "x-goog-api-key": api_key
-        },
-        method="POST"
-    )
-
     result = None
 
-    # Maximum 3 attempts; retry only temporary 503 errors.
-    for attempt in range(3):
+    for model in models:
+        url = (
+            "https://generativelanguage.googleapis.com/"
+            f"v1beta/models/{model}:generateContent"
+        )
+
+        req = urllib.request.Request(
+            url,
+            data=request_data,
+            headers={
+                "Content-Type": "application/json",
+                "x-goog-api-key": api_key
+            },
+            method="POST"
+        )
+
         try:
-            with urllib.request.urlopen(req, timeout=30) as response:
+            with urllib.request.urlopen(req, timeout=25) as response:
                 result = json.loads(response.read().decode("utf-8"))
             break
 
         except urllib.error.HTTPError as error:
             details = error.read().decode("utf-8", errors="replace")
-            print(f"GEMINI HTTP ERROR {error.code}: {details}")
+            print(f"GEMINI {model} HTTP ERROR {error.code}: {details}")
 
-            if error.code == 503 and attempt < 2:
-                time.sleep(2 ** (attempt + 1))
+            if error.code == 503:
                 continue
 
             if error.code == 429:
                 return jsonify({
-                    "error": (
-                        "Gemini API quota or rate limit reached. "
-                        "Please check your Google AI Studio quota."
-                    )
+                    "error": "Gemini quota or rate limit reached. Please try again later."
                 }), 429
 
-            if error.code == 503:
-                return jsonify({
-                    "error": "Gemini is temporarily busy. Please try again later."
-                }), 503
-
             return jsonify({
-                "error": "Gemini API request failed. Check the server logs."
+                "error": f"Gemini API request failed with status {error.code}."
             }), 502
 
         except (TimeoutError, urllib.error.URLError) as error:
-            print("GEMINI CONNECTION/TIMEOUT ERROR:", str(error))
-            return jsonify({
-                "error": "Gemini took too long to respond. Please try again."
-            }), 504
+            print(f"GEMINI {model} CONNECTION ERROR:", str(error))
+            continue
 
-        except (json.JSONDecodeError, ValueError) as error:
-            print("GEMINI RESPONSE ERROR:", str(error))
-            return jsonify({
-                "error": "Gemini returned an invalid response."
-            }), 502
-
+    if not result:
+        return jsonify({
+            "error": "Gemini is temporarily unavailable. Please try again later."
+        }), 503
     if not result:
         return jsonify({
             "error": "Gemini did not return a response. Please try again."
