@@ -3,7 +3,9 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import json
+import time
 import urllib.request
+import urllib.error
 import sqlite3
 
 app = Flask(__name__)
@@ -179,13 +181,21 @@ def auth_status():
     })
 @app.route("/generate", methods=["POST"])
 def generate():
+    data = request.get_json(silent=True) or {}
 
-    data = request.get_json()
-
-    original = data.get("content", "")
+    original = data.get("content", "").strip()
     content_type = data.get("type", "Blog Post")
     tone = data.get("tone", "Professional")
     language = data.get("language", "English")
+
+    if not original:
+        return jsonify({"error": "Please enter content to rewrite."}), 400
+
+    api_key = os.environ.get("GEMINI_API_KEY")
+
+    if not api_key:
+        print("GEMINI ERROR: GEMINI_API_KEY is missing.")
+        return jsonify({"error": "Server API configuration is missing."}), 500
 
     prompt = f"""
 Rewrite the following content into a new, unique version.
@@ -201,19 +211,14 @@ Keep the main meaning, but use different wording and sentence structure.
 Return only the rewritten content.
 """
 
-    api_key = os.environ.get("GEMINI_API_KEY")
-
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent"
+    url = (
+        "https://generativelanguage.googleapis.com/"
+        "v1beta/models/gemini-3.8-flash:generateContent"
+    )
 
     body = {
         "contents": [
-            {
-                "parts": [
-                    {
-                        "text": prompt
-                    }
-                ]
-            }
+            {"parts": [{"text": prompt}]}
         ]
     }
 
@@ -229,57 +234,90 @@ Return only the rewritten content.
         method="POST"
     )
 
+    result = None
+
+    # Maximum 3 attempts; retry only temporary 503 errors.
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as response:
+                result = json.loads(response.read().decode("utf-8"))
+            break
+
+        except urllib.error.HTTPError as error:
+            details = error.read().decode("utf-8", errors="replace")
+            print(f"GEMINI HTTP ERROR {error.code}: {details}")
+
+            if error.code == 503 and attempt < 2:
+                time.sleep(2 ** (attempt + 1))
+                continue
+
+            if error.code == 429:
+                return jsonify({
+                    "error": (
+                        "Gemini API quota or rate limit reached. "
+                        "Please check your Google AI Studio quota."
+                    )
+                }), 429
+
+            if error.code == 503:
+                return jsonify({
+                    "error": "Gemini is temporarily busy. Please try again later."
+                }), 503
+
+            return jsonify({
+                "error": "Gemini API request failed. Check the server logs."
+            }), 502
+
+        except (TimeoutError, urllib.error.URLError) as error:
+            print("GEMINI CONNECTION/TIMEOUT ERROR:", str(error))
+            return jsonify({
+                "error": "Gemini took too long to respond. Please try again."
+            }), 504
+
+        except (json.JSONDecodeError, ValueError) as error:
+            print("GEMINI RESPONSE ERROR:", str(error))
+            return jsonify({
+                "error": "Gemini returned an invalid response."
+            }), 502
+
+    if not result:
+        return jsonify({
+            "error": "Gemini did not return a response. Please try again."
+        }), 502
+
+    candidates = result.get("candidates", [])
+    if not candidates:
+        print("GEMINI EMPTY RESPONSE:", json.dumps(result)[:2000])
+        return jsonify({
+            "error": "Gemini could not generate content for this request."
+        }), 502
+
+    parts = candidates[0].get("content", {}).get("parts", [])
+    generated_text = "\n".join(
+        part["text"] for part in parts if part.get("text")
+    ).strip()
+
+    if not generated_text:
+        return jsonify({
+            "error": "Gemini returned empty content. Please try again."
+        }), 502
+
     try:
-
-        result = None
-
-        for attempt in range(3):
-
-            try:
-                with urllib.request.urlopen(req, timeout=60) as response:
-                    result = json.loads(response.read().decode("utf-8"))
-                break
-
-            except urllib.error.HTTPError as error:
-
-                if error.code == 503 and attempt < 2:
-                    import time
-                    wait_time = 2 ** attempt
-                    print(f"Gemini busy. Retrying in {wait_time} seconds...")
-                    time.sleep(wait_time)
-                    continue
-
-                raise
-
-        generated_text = result["candidates"][0]["content"]["parts"][0]["text"]
-        conn = sqlite3.connect("content.db")
-        cursor = conn.cursor()
-
-        cursor.execute("""
-            INSERT INTO content_history
-            (original_content, generated_content, content_type, tone, language)
-            VALUES (?, ?, ?, ?, ?)
-        """, (original, generated_text, content_type, tone, language))
-
-        conn.commit()
-        conn.close()
-
+        with sqlite3.connect("content.db", timeout=10) as conn:
+            conn.execute("""
+                INSERT INTO content_history
+                (original_content, generated_content, content_type, tone, language)
+                VALUES (?, ?, ?, ?, ?)
+            """, (
+                original, generated_text, content_type, tone, language
+            ))
+    except sqlite3.Error as error:
+        print("DATABASE ERROR:", str(error))
         return jsonify({
-            "result": generated_text
-        })
-
-    except Exception as error:
-
-        print("GEMINI ERROR:", error)
-
-        if hasattr(error, "read"):
-            details = error.read().decode("utf-8")
-            print("GEMINI DETAILS:", details)
-
-        return jsonify({
-            "error": "Gemini request failed. Please check Render logs."
+            "error": "Content was generated, but saving history failed."
         }), 500
 
+    return jsonify({"result": generated_text}), 200
 @app.route("/save", methods=["POST"])
 def save_content():
 
